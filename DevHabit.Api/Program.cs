@@ -12,7 +12,11 @@ WebApplicationBuilder builder = WebApplication.CreateBuilder(
     args
 );
 
-builder.Services.AddControllers();
+builder.Services.AddControllers(options =>
+    {
+        options.ReturnHttpNotAcceptable = true;
+    })
+    .AddXmlSerializerFormatters();
 
 builder.Services.AddOpenApi();
 
@@ -60,4 +64,3 @@ await app.RunAsync();
 // Add-Migration Add_Habits -Context ApplicationDbContext
 // Add-Migration Add_Habits -o Migrations/Application
 // dotnet ef migrations add Add_Habits --output-dir Migrations/Application
-
