@@ -87,7 +87,7 @@ public sealed class HabitsController(ApplicationDbContext dbContext) : Controlle
         }
 
         HabitDto habitDto = habit.ToDto();
-        
+
         patchDocument.ApplyTo(habitDto, ModelState);
 
         // if (!ModelState.IsValid)
@@ -103,6 +103,23 @@ public sealed class HabitsController(ApplicationDbContext dbContext) : Controlle
         habit.Name = habitDto.Name;
         habit.Description = habitDto.Description;
         habit.UpdatedAtUtc = DateTime.UtcNow;
+
+        await dbContext.SaveChangesAsync();
+
+        return NoContent();
+    }
+
+    [HttpDelete("{id}")]
+    public async Task<ActionResult> DeleteHabit(string id)
+    {
+        Habit? habit = await dbContext.Habits.FirstOrDefaultAsync(h => h.Id == id);
+
+        if (habit is null)
+        {
+            return NotFound();
+        }
+
+        dbContext.Habits.Remove(habit);
 
         await dbContext.SaveChangesAsync();
 
