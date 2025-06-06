@@ -64,4 +64,4 @@ await app.RunAsync();
 
 // Add-Migration Add_Habits -Context ApplicationDbContext
 // Add-Migration Add_Habits -o Migrations/Application
-// dotnet ef migrations add Add_Tags --output-dir Migrations/Application
+// dotnet ef migrations add Add_HabitTags --output-dir Migrations/Application
