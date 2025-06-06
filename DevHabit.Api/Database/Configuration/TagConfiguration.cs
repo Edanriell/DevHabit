@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace DevHabit.Api.Database.Configuration;
+namespace DevHabit.Api.Data.Configurations;
 
 public sealed class TagConfiguration : IEntityTypeConfiguration<Tag>
 {

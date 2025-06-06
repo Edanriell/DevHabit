@@ -1,11 +1,14 @@
 ﻿using DevHabit.Api.Database;
+using DevHabit.Api.DTOs.Habits;
+using DevHabit.Api.DTOs.Tags;
+using DevHabit.Api.Entities;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace DevHabit.Api.Controllers;
 
 [ApiController]
-[Microsoft.AspNetCore.Components.Route("tags")]
+[Route("tags")]
 public sealed class TagsController(ApplicationDbContext dbContext) : ControllerBase
 {
     [HttpGet]

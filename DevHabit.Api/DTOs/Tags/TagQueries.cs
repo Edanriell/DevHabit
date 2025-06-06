@@ -1,6 +1,8 @@
-﻿using DevHabit.Api.Entities;
+﻿using System.Linq.Expressions;
+using DevHabit.Api.DTOs.Tags;
+using DevHabit.Api.Entities;
 
-namespace DevHabit.Api.DTOs.Tags;
+namespace DevHabit.Api.DTOs.Habits;
 
 internal static class TagQueries
 {
