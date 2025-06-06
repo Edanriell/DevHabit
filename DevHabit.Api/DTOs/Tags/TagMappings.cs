@@ -26,4 +26,11 @@ internal static class TagMappings
 
         return habit;
     }
+
+    public static void UpdateFromDto(this Tag tag, UpdateTagDto dto)
+    {
+        tag.Name = dto.Name;
+        tag.Description = dto.Description;
+        tag.UpdatedAtUtc = DateTime.UtcNow;
+    }
 }
