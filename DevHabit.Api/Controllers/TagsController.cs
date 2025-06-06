@@ -64,7 +64,33 @@ public sealed class TagsController(ApplicationDbContext dbContext) : ControllerB
     public async Task<ActionResult> UpdateTag(string id, UpdateTagDto updateTagDto)
     {
         Tag? tag = await dbContext.Tags.FirstOrDefaultAsync(h => h.Id == id);
-        
-        
+
+        if (tag is null)
+        {
+            return NotFound();
+        }
+
+        tag.UpdateFromDto(updateTagDto);
+
+        await dbContext.SaveChangesAsync();
+
+        return NoContent();
+    }
+
+    [HttpDelete("{id}")]
+    public async Task<ActionResult> DeleteTag(string id)
+    {
+        Tag? tag = await dbContext.Tags.FirstOrDefaultAsync(h => h.Id == id);
+
+        if (tag is null)
+        {
+            return NotFound();
+        }
+
+        dbContext.Tags.Remove(tag);
+
+        await dbContext.SaveChangesAsync();
+
+        return NoContent();
     }
 }
