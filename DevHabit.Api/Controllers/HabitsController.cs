@@ -119,6 +119,11 @@ public sealed class HabitsController(ApplicationDbContext dbContext) : Controlle
             return NotFound();
         }
 
+        // if (habit is null)
+        // {
+        //     return StatusCode(StatusCodes.Status410Gone);
+        // }
+
         dbContext.Habits.Remove(habit);
 
         await dbContext.SaveChangesAsync();
