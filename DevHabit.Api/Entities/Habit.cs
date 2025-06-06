@@ -15,6 +15,14 @@ public sealed class Habit
     public DateTime CreatedAtUtc { get; set; }
     public DateTime? UpdatedAtUtc { get; set; }
     public DateTime? LastCompletedAtUtc { get; set; }
+
+    // Collection navigation property, it is pointing to the join entity
+    // Primarily is used to make updating a collection easier
+    public List<HabitTag> HabitTags { get; set; }
+
+    // Skip navigation property (ignoring the join entity)
+    // Primarily is used to make querying a collection easier
+    public List<Tag> Tags { get; set; }
 }
 
 public enum HabitType
