@@ -12,14 +12,71 @@ namespace DevHabit.Api.Controllers;
 [Route("habits")]
 public sealed class HabitsController(ApplicationDbContext dbContext) : ControllerBase
 {
+    // [HttpGet]
+    // public async Task<ActionResult<HabitsCollectionDto>> GetHabits()
+    // {
+    //     List<HabitDto> habits = await dbContext
+    //         .Habits
+    //         .Select(HabitQueries.ProjectToDto())
+    //         .ToListAsync();
+    //
+    //
+    //     var habitsCollectionDto = new HabitsCollectionDto
+    //     {
+    //         Data = habits
+    //     };
+    //
+    //     return Ok(habitsCollectionDto);
+    // }
+
     [HttpGet]
-    public async Task<ActionResult<HabitsCollectionDto>> GetHabits()
+    public async Task<ActionResult<HabitsCollectionDto>> GetHabits(
+        // [FromQuery(Name = "q")] string? search,
+        // HabitType? type,
+        // HabitStatus? status
+        [FromQuery] HabitsQueryParameters query)
     {
+        // search ??= search?.Trim().ToLower();
+        query.Search ??= query.Search?.Trim().ToLower();
+
+        // IQueryable<Habit> query = dbContext.Habits;
+        //
+        // if (!string.IsNullOrWhiteSpace(search))
+        // {
+        //     query = query.Where(h => h.Name.ToLower().Contains(search) ||
+        //         h.Description != null && h.Description.ToLower().Contains(search));
+        // }
+
+        // List<HabitDto> habits = await dbContext
+        //     .Habits
+        //     .Where(h => search == null ||
+        //         h.Name.ToLower().Contains(search) ||
+        //         h.Description != null && h.Description.ToLower().Contains(search))
+        //     .Where(h => type == null || h.Type == type)
+        //     .Where(h => status == null || h.Status == status)
+        //     .Select(HabitQueries.ProjectToDto())
+        //     .ToListAsync();
+
+        // List<HabitDto> habits = await dbContext
+        //     .Habits
+        //     .Where(h => query.Search == null ||
+        //         h.Name.ToLower().Contains(query.Search) ||
+        //         h.Description != null && h.Description.ToLower().Contains(query.Search))
+        //     .Where(h => query.Type == null || h.Type == query.Type)
+        //     .Where(h => query.Status == null || h.Status == query.Status)
+        //     .Select(HabitQueries.ProjectToDto())
+        //     .ToListAsync();
+
+        // Better approach
         List<HabitDto> habits = await dbContext
             .Habits
+            .Where(h => query.Search == null ||
+                EF.Functions.ILike(h.Name, $"%{query.Search}%") ||
+                h.Description != null && EF.Functions.ILike(h.Description, $"%{query.Search}%"))
+            .Where(h => query.Type == null || h.Type == query.Type)
+            .Where(h => query.Status == null || h.Status == query.Status)
             .Select(HabitQueries.ProjectToDto())
             .ToListAsync();
-
 
         var habitsCollectionDto = new HabitsCollectionDto
         {
