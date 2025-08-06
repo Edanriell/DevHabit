@@ -1,4 +1,5 @@
 ﻿using DevHabit.Api.Database;
+using DevHabit.Api.DTOs.Common;
 using DevHabit.Api.DTOs.Habits;
 using DevHabit.Api.Entities;
 using DevHabit.Api.Services.Sorting;
@@ -31,7 +32,7 @@ public sealed class HabitsController(ApplicationDbContext dbContext) : Controlle
     // }
 
     [HttpGet]
-    public async Task<ActionResult<HabitsCollectionDto>> GetHabits(
+    public async Task<ActionResult<PaginationResult<HabitDto>>> GetHabits(
         // [FromQuery(Name = "q")] string? search,
         // HabitType? type,
         // HabitStatus? status
@@ -112,23 +113,52 @@ public sealed class HabitsController(ApplicationDbContext dbContext) : Controlle
         //     .ApplySort(query.Sort, sortMappings)
         //     .Select(HabitQueries.ProjectToDto())
         //     .ToListAsync();
-        List<HabitDto> habits = await dbContext
+        // List<HabitDto> habits = await dbContext
+        //     .Habits
+        //     .Where(h => query.Search == null ||
+        //         EF.Functions.ILike(h.Name, $"%{query.Search}%") ||
+        //         h.Description != null && EF.Functions.ILike(h.Description, $"%{query.Search}%"))
+        //     .Where(h => query.Type == null || h.Type == query.Type)
+        //     .Where(h => query.Status == null || h.Status == query.Status)
+        //     .ApplySort(query.Sort, sortMappings)
+        //     .Select(HabitQueries.ProjectToDto())
+        //     .ToListAsync();
+
+        // IQueryable<Habit> habitsQuery = dbContext
+        //     .Habits
+        //     .Where(h => query.Search == null ||
+        //         h.Name.ToLower().Contains(query.Search) ||
+        //         h.Description != null && h.Description.ToLower().Contains(query.Search))
+        //     .Where(h => query.Type == null || h.Type == query.Type)
+        //     .Where(h => query.Status == null || h.Status == query.Status);
+
+        // int totalCount = await habitsQuery.CountAsync();
+
+        // List<HabitDto> habits = await habitsQuery
+        //     .ApplySort(query.Sort, sortMappings)
+        //     .Skip((query.Page - 1) * query.PageSize)
+        //     .Take(query.PageSize)
+        //     .Select(HabitQueries.ProjectToDto())
+        //     .ToListAsync();
+
+        IQueryable<HabitDto> habitsQuery = dbContext
             .Habits
             .Where(h => query.Search == null ||
-                EF.Functions.ILike(h.Name, $"%{query.Search}%") ||
-                h.Description != null && EF.Functions.ILike(h.Description, $"%{query.Search}%"))
+                h.Name.ToLower().Contains(query.Search) ||
+                h.Description != null && h.Description.ToLower().Contains(query.Search))
             .Where(h => query.Type == null || h.Type == query.Type)
             .Where(h => query.Status == null || h.Status == query.Status)
             .ApplySort(query.Sort, sortMappings)
-            .Select(HabitQueries.ProjectToDto())
-            .ToListAsync();
+            .Select(HabitQueries.ProjectToDto());
 
-        var habitsCollectionDto = new HabitsCollectionDto
-        {
-            Data = habits
-        };
+        // var paginationResult = new PaginationResult<HabitDto>
+        // {
+        //     Items = habits
+        // };
 
-        return Ok(habitsCollectionDto);
+        var paginationResult = await PaginationResult<HabitDto>.CreateAsync(habitsQuery, query.Page, query.PageSize);
+
+        return Ok(paginationResult);
     }
 
     [HttpGet("{id}")]
