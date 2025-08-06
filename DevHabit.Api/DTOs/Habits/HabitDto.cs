@@ -7,11 +7,6 @@ namespace DevHabit.Api.DTOs.Habits;
 // Model
 // CreateHabitModel/HabitModel
 
-public sealed record HabitsCollectionDto
-{
-    public List<HabitDto> Data { get; init; }
-}
-
 // public sealed record HabitWithTagsDto : HabitDto
 // {
 //     // public required string Id { get; init; }
