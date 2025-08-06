@@ -8,4 +8,5 @@ public sealed record HabitsQueryParameters
     [FromQuery(Name = "q")] public string? Search { get; set; }
     public HabitType? Type { get; set; }
     public HabitStatus? Status { get; set; }
+    public string? Sort { get; set; }
 }

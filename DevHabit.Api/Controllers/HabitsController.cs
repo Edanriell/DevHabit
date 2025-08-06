@@ -1,6 +1,7 @@
 ﻿using DevHabit.Api.Database;
 using DevHabit.Api.DTOs.Habits;
 using DevHabit.Api.Entities;
+using DevHabit.Api.Services.Sorting;
 using FluentValidation;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
@@ -34,8 +35,16 @@ public sealed class HabitsController(ApplicationDbContext dbContext) : Controlle
         // [FromQuery(Name = "q")] string? search,
         // HabitType? type,
         // HabitStatus? status
-        [FromQuery] HabitsQueryParameters query)
+        [FromQuery] HabitsQueryParameters query,
+        SortMappingProvider sortMappingProvider)
     {
+        if (!sortMappingProvider.ValidateMappings<HabitDto, Habit>(query.Sort))
+        {
+            return Problem(
+                statusCode: StatusCodes.Status400BadRequest,
+                detail: $"The provided sort parameter isn't valid: '{query.Sort}'");
+        }
+
         // search ??= search?.Trim().ToLower();
         query.Search ??= query.Search?.Trim().ToLower();
 
@@ -68,6 +77,41 @@ public sealed class HabitsController(ApplicationDbContext dbContext) : Controlle
         //     .ToListAsync();
 
         // Better approach
+        // List<HabitDto> habits = await dbContext
+        //     .Habits
+        //     .Where(h => query.Search == null ||
+        //         EF.Functions.ILike(h.Name, $"%{query.Search}%") ||
+        //         h.Description != null && EF.Functions.ILike(h.Description, $"%{query.Search}%"))
+        //     .Where(h => query.Type == null || h.Type == query.Type)
+        //     // .OrderByDescending(h => h.Name)
+        //     // .ThenByDescending(h => h.Description)
+        //     .Where(h => query.Status == null || h.Status == query.Status)
+        //     .Select(HabitQueries.ProjectToDto())
+        //     .ToListAsync();
+
+        // Expression<Func<Habit, object>> orderBy = query.Sort switch
+        // {
+        //     "name" => h => h.Name,
+        //     "description" => h => h.Description,
+        //     "type" => h => h.Type,
+        //     "status" => h => h.Status,
+        //     _ => h => h.Name
+        // };
+
+        SortMapping[] sortMappings = sortMappingProvider.GetMappings<HabitDto, Habit>();
+
+        // List<HabitDto> habits = await dbContext
+        //     .Habits
+        //     .Where(h => query.Search == null ||
+        //         h.Name.ToLower().Contains(query.Search) ||
+        //         h.Description != null && h.Description.ToLower().Contains(query.Search))
+        //     .Where(h => query.Type == null || h.Type == query.Type)
+        //     // .OrderBy(orderBy)
+        //     .Where(h => query.Status == null || h.Status == query.Status)
+        //     // .OrderBy("Name ASC, Description DESC, EndDate DESC")
+        //     .ApplySort(query.Sort, sortMappings)
+        //     .Select(HabitQueries.ProjectToDto())
+        //     .ToListAsync();
         List<HabitDto> habits = await dbContext
             .Habits
             .Where(h => query.Search == null ||
@@ -75,6 +119,7 @@ public sealed class HabitsController(ApplicationDbContext dbContext) : Controlle
                 h.Description != null && EF.Functions.ILike(h.Description, $"%{query.Search}%"))
             .Where(h => query.Type == null || h.Type == query.Type)
             .Where(h => query.Status == null || h.Status == query.Status)
+            .ApplySort(query.Sort, sortMappings)
             .Select(HabitQueries.ProjectToDto())
             .ToListAsync();
 
