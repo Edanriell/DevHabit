@@ -2,7 +2,7 @@
 
 namespace DevHabit.Api.DTOs.Common;
 
-public sealed record PaginationResult<T> : ICollectionResponse<T>
+public sealed record PaginationResult<T> : ICollectionResponse<T>, ILinksResponse
 {
     public int Page { get; init; }
     public int PageSize { get; init; }
@@ -11,6 +11,7 @@ public sealed record PaginationResult<T> : ICollectionResponse<T>
     public bool HasPreviousPage => Page > 1;
     public bool HasNextPage => Page < TotalPages;
     public List<T> Items { get; init; }
+    public List<LinkDto> Links { get; set; }
 
     public static async Task<PaginationResult<T>> CreateAsync(
         IQueryable<T> query,
