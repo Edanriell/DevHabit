@@ -1,4 +1,4 @@
-namespace DevHabit.Api.Database;
+﻿namespace DevHabit.Api.Database;
 
 public static class Schemas
 {

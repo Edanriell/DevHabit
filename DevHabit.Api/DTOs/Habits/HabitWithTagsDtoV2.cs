@@ -19,3 +19,4 @@ public sealed record HabitWithTagsDtoV2
     public DateTime? LastCompletedAt { get; init; }
     public required string[] Tags { get; init; }
 }
+ 

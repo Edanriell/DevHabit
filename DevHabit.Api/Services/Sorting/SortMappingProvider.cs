@@ -11,7 +11,7 @@ public sealed class SortMappingProvider(IEnumerable<ISortMappingDefinition> sort
         if (sortMappingDefinition is null)
         {
             throw new InvalidOperationException(
-                $"The mapping from '{typeof(TSource).Name}' into'{typeof(TDestination).Name}' isn't defined");
+                $"The mapping from '{typeof(TSource).Name}' into'{typeof(TDestination).Name} isn't defined");
         }
 
         return sortMappingDefinition.Mappings;

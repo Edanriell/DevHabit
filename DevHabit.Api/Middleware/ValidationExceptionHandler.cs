@@ -32,7 +32,8 @@ public sealed class ValidationExceptionHandler(IProblemDetailsService problemDet
             .GroupBy(e => e.PropertyName)
             .ToDictionary(
                 g => g.Key.ToLowerInvariant(),
-                g => g.Select(e => e.ErrorMessage).ToArray());
+                g => g.Select(e => e.ErrorMessage).ToArray()
+            );
         context.ProblemDetails.Extensions.Add("errors", errors);
 
         return await problemDetailsService.TryWriteAsync(context);

@@ -62,15 +62,10 @@ public sealed class CreateHabitDtoValidator : AbstractValidator<CreateHabitDto>
                 .WithMessage("Milestone target must be greater than 0");
         });
 
-        // Complex rule
+        // Complex rules
         RuleFor(x => x.Target.Unit)
             .Must((dto, unit) => IsTargetUnitCompatibleWithType(dto.Type, unit))
             .WithMessage("Target unit is not compatible with the habit type");
-    }
-
-    private object RuleFor(Func<object, object> p0)
-    {
-        throw new NotImplementedException();
     }
 
     private static bool IsTargetUnitCompatibleWithType(HabitType type, string unit)
@@ -82,7 +77,7 @@ public sealed class CreateHabitDtoValidator : AbstractValidator<CreateHabitDto>
             // Binary habits should only use count-based units
             HabitType.Binary => AllowedUnitsForBinaryHabits.Contains(normalizedUnit),
             // Measurable habits can use any of the allowed units
-            HabitType.Measureable => AllowedUnits.Contains(normalizedUnit),
+            HabitType.Measurable => AllowedUnits.Contains(normalizedUnit),
             _ => false // None is not valid
         };
     }

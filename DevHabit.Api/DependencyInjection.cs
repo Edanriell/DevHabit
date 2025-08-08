@@ -27,8 +27,8 @@ public static class DependencyInjection
             {
                 options.ReturnHttpNotAcceptable = true;
             })
-            .AddNewtonsoftJson(options =>
-                options.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver())
+            .AddNewtonsoftJson(options => options.SerializerSettings.ContractResolver =
+                new CamelCasePropertyNamesContractResolver())
             .AddXmlSerializerFormatters();
 
         builder.Services.Configure<MvcOptions>(options =>
@@ -50,10 +50,8 @@ public static class DependencyInjection
                 options.DefaultApiVersion = new ApiVersion(1.0);
                 options.AssumeDefaultVersionWhenUnspecified = true;
                 options.ReportApiVersions = true;
-                // options.ApiVersionSelector = new CurrentImplementationApiVersionSelector(options);
                 options.ApiVersionSelector = new DefaultApiVersionSelector(options);
 
-                // options.ApiVersionReader = new UrlSegmentApiVersionReader();
                 options.ApiVersionReader = ApiVersionReader.Combine(
                     new MediaTypeApiVersionReader(),
                     new MediaTypeApiVersionReaderBuilder()

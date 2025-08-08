@@ -77,8 +77,6 @@ public sealed class DataShapingService
         }
 
         return shapedObjects;
-
-        // return entities.Select(e => ShapeData(e, fields)).ToList();
     }
 
     public bool Validate<T>(string? fields)

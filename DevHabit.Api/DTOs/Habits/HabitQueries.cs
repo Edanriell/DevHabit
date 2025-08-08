@@ -3,7 +3,6 @@ using DevHabit.Api.Entities;
 
 namespace DevHabit.Api.DTOs.Habits;
 
-// EF Core
 internal static class HabitQueries
 {
     public static Expression<Func<Habit, HabitDto>> ProjectToDto()
