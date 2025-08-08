@@ -1,4 +1,4 @@
-using DevHabit.Api.Database;
+﻿using DevHabit.Api.Database;
 using Microsoft.EntityFrameworkCore;
 
 namespace DevHabit.Api.Extensions;
@@ -14,11 +14,11 @@ public static class DatabaseExtensions
         {
             await dbContext.Database.MigrateAsync();
 
-            app.Logger.LogInformation("Database migrations applied successfully");
+            app.Logger.LogInformation("Database migrations applied successfully.");
         }
         catch (Exception e)
         {
-            app.Logger.LogError(e, "An error occurred while applying database migrations");
+            app.Logger.LogError(e, "An error occurred while applying database migrations.");
             throw;
         }
     }

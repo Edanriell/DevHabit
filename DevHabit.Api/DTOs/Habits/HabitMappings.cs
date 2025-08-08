@@ -108,14 +108,14 @@ internal static class HabitMappings
         habit.Type = dto.Type;
         habit.EndDate = dto.EndDate;
 
-        // Update frequency (assuming it's immutable, create a new instance)
+        // Update frequency (assuming it's immutable, create new instance)
         habit.Frequency = new Frequency
         {
             Type = dto.Frequency.Type,
             TimesPerPeriod = dto.Frequency.TimesPerPeriod
         };
 
-        // Update the target (assuming it's immutable, create a new instance)
+        // Update target
         habit.Target = new Target
         {
             Value = dto.Target.Value,
@@ -123,10 +123,9 @@ internal static class HabitMappings
         };
 
         // Update milestone if provided
-        if (dto.Milestone is not null)
+        if (dto.Milestone != null)
         {
-            // Create new if it doesn't exist
-            habit.Milestone ??= new Milestone();
+            habit.Milestone ??= new Milestone(); // Create new if doesn't exist
             habit.Milestone.Target = dto.Milestone.Target;
             // Note: We don't update Milestone.Current from DTO to preserve progress
         }

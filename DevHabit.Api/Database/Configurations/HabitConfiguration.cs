@@ -1,8 +1,8 @@
-using DevHabit.Api.Entities;
+﻿using DevHabit.Api.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace DevHabit.Api.Database.Configuration;
+namespace DevHabit.Api.Database.Configurations;
 
 public sealed class HabitConfiguration : IEntityTypeConfiguration<Habit>
 {
@@ -17,15 +17,12 @@ public sealed class HabitConfiguration : IEntityTypeConfiguration<Habit>
         builder.Property(h => h.Description).HasMaxLength(500);
 
         builder.OwnsOne(h => h.Frequency);
-
         builder.OwnsOne(h => h.Target, targetBuilder =>
         {
             targetBuilder.Property(t => t.Unit).HasMaxLength(100);
         });
-
         builder.OwnsOne(h => h.Milestone);
 
-        // For skip navigation property named Tags
         builder.HasMany(h => h.Tags)
             .WithMany()
             .UsingEntity<HabitTag>();

@@ -10,7 +10,7 @@ internal static class QueryableExtensions
         SortMapping[] mappings,
         string defaultOrderBy = "Id")
     {
-        if (string.IsNullOrEmpty(sort))
+        if (string.IsNullOrWhiteSpace(sort))
         {
             return query.OrderBy(defaultOrderBy);
         }
