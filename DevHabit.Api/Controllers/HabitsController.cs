@@ -8,12 +8,14 @@ using DevHabit.Api.Entities;
 using DevHabit.Api.Services;
 using DevHabit.Api.Services.Sorting;
 using FluentValidation;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace DevHabit.Api.Controllers;
 
+[Authorize]
 [ApiController]
 [Route("habits")]
 [ApiVersion(1.0)]
@@ -54,7 +56,7 @@ public sealed class HabitsController(ApplicationDbContext dbContext, LinkService
             .Habits
             .Where(h => query.Search == null ||
                 h.Name.ToLower().Contains(query.Search) ||
-                h.Description != null && h.Description.ToLower().Contains(query.Search))
+                (h.Description != null && h.Description.ToLower().Contains(query.Search)))
             .Where(h => query.Type == null || h.Type == query.Type)
             .Where(h => query.Status == null || h.Status == query.Status)
             .ApplySort(query.Sort, sortMappings)
