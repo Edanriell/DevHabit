@@ -53,8 +53,8 @@ public sealed class HabitsController(ApplicationDbContext dbContext, LinkService
         IQueryable<HabitDto> habitsQuery = dbContext
             .Habits
             .Where(h => query.Search == null ||
-                EF.Functions.Like(h.Name, $"%{query.Search}%") ||
-                h.Description != null && EF.Functions.Like(h.Description, $"%{query.Search}%"))
+                h.Name.ToLower().Contains(query.Search) ||
+                h.Description != null && h.Description.ToLower().Contains(query.Search))
             .Where(h => query.Type == null || h.Type == query.Type)
             .Where(h => query.Status == null || h.Status == query.Status)
             .ApplySort(query.Sort, sortMappings)
