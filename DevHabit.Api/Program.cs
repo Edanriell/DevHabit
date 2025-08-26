@@ -8,7 +8,8 @@ builder
     .AddErrorHandling()
     .AddDatabase()
     .AddObservability()
-    .AddApplicationServices();
+    .AddApplicationServices()
+    .AddAuthenticationServices();
 
 WebApplication app = builder.Build();
 
@@ -29,4 +30,6 @@ await app.RunAsync();
 
 // Add-Migration Add_Habits -Context ApplicationDbContext
 // Add-Migration Add_Habits -o Migrations/Application
+// Add-Migration Add_Identity -Context ApplicationIdentityDbContext -o Migrations/Identity
 // dotnet ef migrations add Add_HabitTags --output-dir Migrations/Application
+// dotnet ef migrations add Add_Identity --context ApplicationIdentityDbContext --output-dir Migrations/Identity
