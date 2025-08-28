@@ -12,13 +12,13 @@ namespace DevHabit.Api.Migrations.Identity
 {
     [DbContext(typeof(ApplicationIdentityDbContext))]
     partial class ApplicationIdentityDbContextModelSnapshot : ModelSnapshot
-    {
+    { 
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasDefaultSchema("identity")
-                .HasAnnotation("ProductVersion", "9.0.8")
+                .HasAnnotation("ProductVersion", "9.0.1")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);

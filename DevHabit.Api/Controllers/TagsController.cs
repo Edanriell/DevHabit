@@ -37,7 +37,7 @@ public sealed class TagsController(
 
         List<TagDto> tags = await dbContext
             .Tags
-            .Where(h => h.UserId == userId)
+            .Where(t => t.UserId == userId)
             .Select(TagQueries.ProjectToDto())
             .ToListAsync();
 
@@ -65,7 +65,7 @@ public sealed class TagsController(
 
         TagDto? tag = await dbContext
             .Tags
-            .Where(h => h.Id == id && h.UserId == userId)
+            .Where(t => t.Id == id && t.UserId == userId)
             .Select(TagQueries.ProjectToDto())
             .FirstOrDefaultAsync();
 
@@ -89,6 +89,12 @@ public sealed class TagsController(
         IValidator<CreateTagDto> validator,
         ProblemDetailsFactory problemDetailsFactory)
     {
+        string? userId = await userContext.GetUserIdAsync();
+        if (string.IsNullOrWhiteSpace(userId))
+        {
+            return Unauthorized();
+        }
+
         ValidationResult validationResult = await validator.ValidateAsync(createTagDto);
 
         if (!validationResult.IsValid)
@@ -101,7 +107,7 @@ public sealed class TagsController(
             return BadRequest(problem);
         }
 
-        Tag tag = createTagDto.ToEntity();
+        Tag tag = createTagDto.ToEntity(userId);
 
         if (await dbContext.Tags.AnyAsync(t => t.Name == tag.Name))
         {
@@ -133,7 +139,7 @@ public sealed class TagsController(
             return Unauthorized();
         }
 
-        Tag? tag = await dbContext.Tags.FirstOrDefaultAsync(h => h.Id == id && h.UserId == userId);
+        Tag? tag = await dbContext.Tags.FirstOrDefaultAsync(t => t.Id == id && t.UserId == userId);
 
         if (tag is null)
         {
@@ -156,7 +162,7 @@ public sealed class TagsController(
             return Unauthorized();
         }
 
-        Tag? tag = await dbContext.Tags.FirstOrDefaultAsync(h => h.Id == id && h.UserId == userId);
+        Tag? tag = await dbContext.Tags.FirstOrDefaultAsync(t => t.Id == id && t.UserId == userId);
 
         if (tag is null)
         {

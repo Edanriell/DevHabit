@@ -7,51 +7,47 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace DevHabit.Api.Migrations.Application
 {
     /// <inheritdoc />
-    public partial class Add_HabitTags : Migration
+    public partial class Add_GitHubAccessTokens : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
-        {
+        { 
             migrationBuilder.CreateTable(
-                name: "habit_tags",
+                name: "git_hub_access_tokens",
                 schema: "dev_habit",
                 columns: table => new
                 {
-                    habit_id = table.Column<string>(type: "character varying(500)", nullable: false),
-                    tag_id = table.Column<string>(type: "character varying(500)", nullable: false),
+                    id = table.Column<string>(type: "character varying(500)", maxLength: 500, nullable: false),
+                    user_id = table.Column<string>(type: "character varying(500)", nullable: false),
+                    token = table.Column<string>(type: "character varying(1000)", maxLength: 1000, nullable: false),
+                    expires_at_utc = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     created_at_utc = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("pk_habit_tags", x => new { x.habit_id, x.tag_id });
+                    table.PrimaryKey("pk_git_hub_access_tokens", x => x.id);
                     table.ForeignKey(
-                        name: "fk_habit_tags_habits_habit_id",
-                        column: x => x.habit_id,
+                        name: "fk_git_hub_access_tokens_users_user_id",
+                        column: x => x.user_id,
                         principalSchema: "dev_habit",
-                        principalTable: "habits",
-                        principalColumn: "id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "fk_habit_tags_tags_tag_id",
-                        column: x => x.tag_id,
-                        principalSchema: "dev_habit",
-                        principalTable: "tags",
+                        principalTable: "users",
                         principalColumn: "id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "ix_habit_tags_tag_id",
+                name: "ix_git_hub_access_tokens_user_id",
                 schema: "dev_habit",
-                table: "habit_tags",
-                column: "tag_id");
+                table: "git_hub_access_tokens",
+                column: "user_id",
+                unique: true);
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "habit_tags",
+                name: "git_hub_access_tokens",
                 schema: "dev_habit");
         }
     }

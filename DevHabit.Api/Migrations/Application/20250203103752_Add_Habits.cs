@@ -8,7 +8,7 @@ namespace DevHabit.Api.Migrations.Application
 {
     /// <inheritdoc />
     public partial class Add_Habits : Migration
-    {
+    { 
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {

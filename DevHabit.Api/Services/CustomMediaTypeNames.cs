@@ -12,4 +12,4 @@ public static class CustomMediaTypeNames
 
         public const string HateoasSubType = "hateoas";
     }
-}
+} 

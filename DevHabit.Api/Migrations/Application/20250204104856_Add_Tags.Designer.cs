@@ -12,16 +12,16 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace DevHabit.Api.Migrations.Application
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250827162954_Add_UserId_Reference")]
-    partial class Add_UserId_Reference
-    {
+    [Migration("20250204104856_Add_Tags")]
+    partial class Add_Tags
+    { 
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasDefaultSchema("dev_habit")
-                .HasAnnotation("ProductVersion", "9.0.8")
+                .HasAnnotation("ProductVersion", "9.0.1")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
@@ -72,44 +72,10 @@ namespace DevHabit.Api.Migrations.Application
                         .HasColumnType("timestamp with time zone")
                         .HasColumnName("updated_at_utc");
 
-                    b.Property<string>("UserId")
-                        .IsRequired()
-                        .HasMaxLength(500)
-                        .HasColumnType("character varying(500)")
-                        .HasColumnName("user_id");
-
                     b.HasKey("Id")
                         .HasName("pk_habits");
 
-                    b.HasIndex("UserId")
-                        .HasDatabaseName("ix_habits_user_id");
-
                     b.ToTable("habits", "dev_habit");
-                });
-
-            modelBuilder.Entity("DevHabit.Api.Entities.HabitTag", b =>
-                {
-                    b.Property<string>("HabitId")
-                        .HasMaxLength(500)
-                        .HasColumnType("character varying(500)")
-                        .HasColumnName("habit_id");
-
-                    b.Property<string>("TagId")
-                        .HasMaxLength(500)
-                        .HasColumnType("character varying(500)")
-                        .HasColumnName("tag_id");
-
-                    b.Property<DateTime>("CreatedAtUtc")
-                        .HasColumnType("timestamp with time zone")
-                        .HasColumnName("created_at_utc");
-
-                    b.HasKey("HabitId", "TagId")
-                        .HasName("pk_habit_tags");
-
-                    b.HasIndex("TagId")
-                        .HasDatabaseName("ix_habit_tags_tag_id");
-
-                    b.ToTable("habit_tags", "dev_habit");
                 });
 
             modelBuilder.Entity("DevHabit.Api.Entities.Tag", b =>
@@ -138,78 +104,18 @@ namespace DevHabit.Api.Migrations.Application
                         .HasColumnType("timestamp with time zone")
                         .HasColumnName("updated_at_utc");
 
-                    b.Property<string>("UserId")
-                        .IsRequired()
-                        .HasMaxLength(500)
-                        .HasColumnType("character varying(500)")
-                        .HasColumnName("user_id");
-
                     b.HasKey("Id")
                         .HasName("pk_tags");
 
-                    b.HasIndex("UserId", "Name")
+                    b.HasIndex("Name")
                         .IsUnique()
-                        .HasDatabaseName("ix_tags_user_id_name");
+                        .HasDatabaseName("ix_tags_name");
 
                     b.ToTable("tags", "dev_habit");
                 });
 
-            modelBuilder.Entity("DevHabit.Api.Entities.User", b =>
-                {
-                    b.Property<string>("Id")
-                        .HasMaxLength(500)
-                        .HasColumnType("character varying(500)")
-                        .HasColumnName("id");
-
-                    b.Property<DateTime>("CreatedAtUtc")
-                        .HasColumnType("timestamp with time zone")
-                        .HasColumnName("created_at_utc");
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasMaxLength(300)
-                        .HasColumnType("character varying(300)")
-                        .HasColumnName("email");
-
-                    b.Property<string>("IdentityId")
-                        .IsRequired()
-                        .HasMaxLength(500)
-                        .HasColumnType("character varying(500)")
-                        .HasColumnName("identity_id");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("character varying(100)")
-                        .HasColumnName("name");
-
-                    b.Property<DateTime?>("UpdatedAtUtc")
-                        .HasColumnType("timestamp with time zone")
-                        .HasColumnName("updated_at_utc");
-
-                    b.HasKey("Id")
-                        .HasName("pk_users");
-
-                    b.HasIndex("Email")
-                        .IsUnique()
-                        .HasDatabaseName("ix_users_email");
-
-                    b.HasIndex("IdentityId")
-                        .IsUnique()
-                        .HasDatabaseName("ix_users_identity_id");
-
-                    b.ToTable("users", "dev_habit");
-                });
-
             modelBuilder.Entity("DevHabit.Api.Entities.Habit", b =>
                 {
-                    b.HasOne("DevHabit.Api.Entities.User", null)
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired()
-                        .HasConstraintName("fk_habits_users_user_id");
-
                     b.OwnsOne("DevHabit.Api.Entities.Frequency", "Frequency", b1 =>
                         {
                             b1.Property<string>("HabitId")
@@ -288,38 +194,6 @@ namespace DevHabit.Api.Migrations.Application
 
                     b.Navigation("Target")
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("DevHabit.Api.Entities.HabitTag", b =>
-                {
-                    b.HasOne("DevHabit.Api.Entities.Habit", null)
-                        .WithMany("HabitTags")
-                        .HasForeignKey("HabitId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired()
-                        .HasConstraintName("fk_habit_tags_habits_habit_id");
-
-                    b.HasOne("DevHabit.Api.Entities.Tag", null)
-                        .WithMany()
-                        .HasForeignKey("TagId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired()
-                        .HasConstraintName("fk_habit_tags_tags_tag_id");
-                });
-
-            modelBuilder.Entity("DevHabit.Api.Entities.Tag", b =>
-                {
-                    b.HasOne("DevHabit.Api.Entities.User", null)
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired()
-                        .HasConstraintName("fk_tags_users_user_id");
-                });
-
-            modelBuilder.Entity("DevHabit.Api.Entities.Habit", b =>
-                {
-                    b.Navigation("HabitTags");
                 });
 #pragma warning restore 612, 618
         }

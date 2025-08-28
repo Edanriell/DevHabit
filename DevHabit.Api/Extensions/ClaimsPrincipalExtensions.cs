@@ -10,4 +10,4 @@ public static class ClaimsPrincipalExtensions
 
         return identityId;
     }
-}
+} 

@@ -8,12 +8,12 @@ namespace DevHabit.Api.Migrations.Identity
 {
     /// <inheritdoc />
     public partial class Add_RefreshTokens : Migration
-    {
+    { 
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "refresh_token",
+                name: "refresh_tokens",
                 schema: "identity",
                 columns: table => new
                 {
@@ -24,9 +24,9 @@ namespace DevHabit.Api.Migrations.Identity
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("pk_refresh_token", x => x.id);
+                    table.PrimaryKey("pk_refresh_tokens", x => x.id);
                     table.ForeignKey(
-                        name: "fk_refresh_token_users_user_id",
+                        name: "fk_refresh_tokens_users_user_id",
                         column: x => x.user_id,
                         principalSchema: "identity",
                         principalTable: "asp_net_users",
@@ -35,16 +35,16 @@ namespace DevHabit.Api.Migrations.Identity
                 });
 
             migrationBuilder.CreateIndex(
-                name: "ix_refresh_token_token",
+                name: "ix_refresh_tokens_token",
                 schema: "identity",
-                table: "refresh_token",
+                table: "refresh_tokens",
                 column: "token",
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "ix_refresh_token_user_id",
+                name: "ix_refresh_tokens_user_id",
                 schema: "identity",
-                table: "refresh_token",
+                table: "refresh_tokens",
                 column: "user_id");
         }
 
@@ -52,7 +52,7 @@ namespace DevHabit.Api.Migrations.Identity
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "refresh_token",
+                name: "refresh_tokens",
                 schema: "identity");
         }
     }

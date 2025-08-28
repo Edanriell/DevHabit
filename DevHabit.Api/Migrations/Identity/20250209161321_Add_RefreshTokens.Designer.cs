@@ -12,16 +12,16 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace DevHabit.Api.Migrations.Identity
 {
     [DbContext(typeof(ApplicationIdentityDbContext))]
-    [Migration("20250827152103_Add_RefreshTokens2")]
-    partial class Add_RefreshTokens2
-    {
+    [Migration("20250209161321_Add_RefreshTokens")]
+    partial class Add_RefreshTokens
+    { 
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasDefaultSchema("identity")
-                .HasAnnotation("ProductVersion", "9.0.8")
+                .HasAnnotation("ProductVersion", "9.0.1")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);

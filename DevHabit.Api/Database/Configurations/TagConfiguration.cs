@@ -11,7 +11,7 @@ public sealed class TagConfiguration : IEntityTypeConfiguration<Tag>
         builder.HasKey(t => t.Id);
 
         builder.Property(t => t.Id).HasMaxLength(500);
-        builder.Property(h => h.UserId).HasMaxLength(500);
+        builder.Property(t => t.UserId).HasMaxLength(500);
 
         builder.Property(t => t.Name).IsRequired().HasMaxLength(50);
 
