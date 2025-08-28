@@ -16,4 +16,4 @@ internal static class UserQueries
             UpdatedAtUtc = u.UpdatedAtUtc
         };
     }
-} 
+}

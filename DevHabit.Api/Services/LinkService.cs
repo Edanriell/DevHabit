@@ -24,4 +24,4 @@ public sealed class LinkService(LinkGenerator linkGenerator, IHttpContextAccesso
             Method = method
         };
     }
-} 
+}

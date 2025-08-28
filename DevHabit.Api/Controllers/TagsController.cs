@@ -41,17 +41,21 @@ public sealed class TagsController(
             .Select(TagQueries.ProjectToDto())
             .ToListAsync();
 
-        var habitsCollectionDto = new TagsCollectionDto
+        var tagsCollectionDto = new TagsCollectionDto
         {
             Items = tags
         };
 
         if (acceptHeader.IncludeLinks)
         {
-            habitsCollectionDto.Links = CreateLinksForTags();
+            tagsCollectionDto.Links = CreateLinksForTags();
+            foreach (TagDto tagDto in tagsCollectionDto.Items)
+            {
+                tagDto.Links = CreateLinksForTag(tagDto.Id);
+            }
         }
 
-        return Ok(habitsCollectionDto);
+        return Ok(tagsCollectionDto);
     }
 
     [HttpGet("{id}")]

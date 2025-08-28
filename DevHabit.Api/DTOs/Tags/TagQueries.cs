@@ -16,4 +16,4 @@ internal static class TagQueries
             UpdatedAtUtc = t.UpdatedAtUtc
         };
     }
-} 
+}
