@@ -1,9 +1,9 @@
 export interface Link {
-	href: string;
-	rel: string;
-	method: string;
+  href: string;
+  rel: string;
+  method: string;
 }
 
 export interface HateoasResponse {
-	links: Link[];
+  links: Link[];
 }
