@@ -2,12 +2,12 @@
 using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
-
+       
 namespace DevHabit.Api.Migrations.Application
 {
     /// <inheritdoc />
     public partial class Add_UserId_Reference : Migration
-    { 
+    {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {

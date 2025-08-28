@@ -4,12 +4,12 @@ using Microsoft.EntityFrameworkCore.Migrations;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
-
+   
 namespace DevHabit.Api.Migrations.Identity
 {
     /// <inheritdoc />
     public partial class Add_Identity : Migration
-    { 
+    {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {

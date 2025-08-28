@@ -39,4 +39,4 @@ public sealed class ApplicationIdentityDbContext(DbContextOptions<ApplicationIde
                 .OnDelete(DeleteBehavior.Cascade);
         });
     }
-} 
+}

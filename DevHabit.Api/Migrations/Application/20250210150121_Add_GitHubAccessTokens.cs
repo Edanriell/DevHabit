@@ -3,7 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
-
+      
 namespace DevHabit.Api.Migrations.Application
 {
     /// <inheritdoc />
@@ -11,7 +11,7 @@ namespace DevHabit.Api.Migrations.Application
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
-        { 
+        {
             migrationBuilder.CreateTable(
                 name: "git_hub_access_tokens",
                 schema: "dev_habit",

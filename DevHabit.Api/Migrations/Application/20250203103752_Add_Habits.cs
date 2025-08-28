@@ -3,12 +3,12 @@ using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
-
-namespace DevHabit.Api.Migrations.Application
+  
+namespace DevHabit.Api.Migrations.Application   
 {
     /// <inheritdoc />
     public partial class Add_Habits : Migration
-    { 
+    {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {

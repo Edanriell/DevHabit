@@ -1,5 +1,5 @@
 ﻿using System.Security.Cryptography;
-using DevHabit.Api.Entities;
+using DevHabit.Api.Settings;
 using Microsoft.Extensions.Options;
 
 namespace DevHabit.Api.Services;
@@ -68,9 +68,13 @@ public sealed class EncryptionService(IOptions<EncryptionOptions> options)
 
             return streamReader.ReadToEnd();
         }
-        catch (CryptographicException e)
+        catch (CryptographicException ex)
         {
-            throw new InvalidOperationException("Decryption failed", e);
+            throw new InvalidOperationException("Decryption failed", ex);
+        }
+        catch (FormatException ex)
+        {
+            throw new InvalidOperationException("Invalid cipher text format", ex);
         }
     }
 }

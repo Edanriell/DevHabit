@@ -10,4 +10,4 @@ public sealed class CreateTagDtoValidator : AbstractValidator<CreateTagDto>
 
         RuleFor(x => x.Description).MaximumLength(50);
     }
-} 
+}

@@ -1,4 +1,5 @@
-﻿using DevHabit.Api.DTOs.Common;
+﻿using System.Net.Mime;
+using DevHabit.Api.DTOs.Common;
 using DevHabit.Api.DTOs.GitHub;
 using DevHabit.Api.Entities;
 using DevHabit.Api.Services;
@@ -10,6 +11,11 @@ namespace DevHabit.Api.Controllers;
 [Authorize(Roles = Roles.Member)]
 [ApiController]
 [Route("github")]
+[Produces(
+    MediaTypeNames.Application.Json,
+    CustomMediaTypeNames.Application.JsonV1,
+    CustomMediaTypeNames.Application.HateoasJson,
+    CustomMediaTypeNames.Application.HateoasJsonV1)]
 public sealed class GitHubController(
     GitHubAccessTokenService gitHubAccessTokenService,
     GitHubService gitHubService,

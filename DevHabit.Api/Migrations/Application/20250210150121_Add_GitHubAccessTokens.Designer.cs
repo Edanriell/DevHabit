@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
-
+    
 namespace DevHabit.Api.Migrations.Application
 {
     [DbContext(typeof(ApplicationDbContext))]
@@ -17,7 +17,7 @@ namespace DevHabit.Api.Migrations.Application
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
-        { 
+        {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasDefaultSchema("dev_habit")
