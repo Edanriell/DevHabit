@@ -15,7 +15,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace DevHabit.Api.Controllers;
 
-[Authorize]
+[Authorize(Roles = Roles.Member)]
 [ApiController]
 [Route("habits")]
 [ApiVersion(1.0)]
@@ -66,7 +66,7 @@ public sealed class HabitsController(
             .Where(h => h.UserId == userId)
             .Where(h => query.Search == null ||
                 h.Name.ToLower().Contains(query.Search) ||
-                h.Description != null && h.Description.ToLower().Contains(query.Search))
+                (h.Description != null && h.Description.ToLower().Contains(query.Search)))
             .Where(h => query.Type == null || h.Type == query.Type)
             .Where(h => query.Status == null || h.Status == query.Status)
             .ApplySort(query.Sort, sortMappings)
@@ -349,7 +349,6 @@ public sealed class HabitsController(
 
     private List<LinkDto> CreateLinksForHabit(string id, string? fields)
     {
-        // User.IsInRole(Roles.Admin)
         List<LinkDto> links =
         [
             linkService.Create(nameof(GetHabit), "self", HttpMethods.Get, new { id, fields }),

@@ -7,4 +7,4 @@ public sealed record UserDto
     public required string Name { get; set; }
     public required DateTime CreatedAtUtc { get; set; }
     public DateTime? UpdatedAtUtc { get; set; }
-}
+} 

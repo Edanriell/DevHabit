@@ -15,4 +15,4 @@ public static class UserMappings
             CreatedAtUtc = DateTime.UtcNow
         };
     }
-}
+} 

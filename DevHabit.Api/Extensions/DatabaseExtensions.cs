@@ -33,7 +33,8 @@ public static class DatabaseExtensions
     public static async Task SeedInitialDataAsync(this WebApplication app)
     {
         using IServiceScope scope = app.Services.CreateScope();
-        RoleManager<IdentityRole> roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+        RoleManager<IdentityRole> roleManager =
+            scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
 
         try
         {

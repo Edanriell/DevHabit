@@ -12,16 +12,16 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace DevHabit.Api.Migrations.Application
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250808135722_Add_Users")]
+    [Migration("20250209104702_Add_Users")]
     partial class Add_Users
-    {
+    { 
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasDefaultSchema("dev_habit")
-                .HasAnnotation("ProductVersion", "9.0.5")
+                .HasAnnotation("ProductVersion", "9.0.1")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);

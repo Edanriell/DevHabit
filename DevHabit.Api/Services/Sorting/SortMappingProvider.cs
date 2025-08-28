@@ -34,4 +34,4 @@ public sealed class SortMappingProvider(IEnumerable<ISortMappingDefinition> sort
 
         return sortFields.All(f => mapping.Any(m => m.SortField.Equals(f, StringComparison.OrdinalIgnoreCase)));
     }
-}
+} 

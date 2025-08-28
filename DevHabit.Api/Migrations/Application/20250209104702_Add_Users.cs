@@ -7,32 +7,40 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace DevHabit.Api.Migrations.Application
 {
     /// <inheritdoc />
-    public partial class Add_Tags : Migration
-    {
+    public partial class Add_Users : Migration
+    { 
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "tags",
+                name: "users",
                 schema: "dev_habit",
                 columns: table => new
                 {
                     id = table.Column<string>(type: "character varying(500)", maxLength: 500, nullable: false),
-                    name = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: false),
-                    description = table.Column<string>(type: "character varying(500)", maxLength: 500, nullable: true),
+                    email = table.Column<string>(type: "character varying(300)", maxLength: 300, nullable: false),
+                    name = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: false),
                     created_at_utc = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    updated_at_utc = table.Column<DateTime>(type: "timestamp with time zone", nullable: true)
+                    updated_at_utc = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
+                    identity_id = table.Column<string>(type: "character varying(500)", maxLength: 500, nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("pk_tags", x => x.id);
+                    table.PrimaryKey("pk_users", x => x.id);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "ix_tags_name",
+                name: "ix_users_email",
                 schema: "dev_habit",
-                table: "tags",
-                column: "name",
+                table: "users",
+                column: "email",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "ix_users_identity_id",
+                schema: "dev_habit",
+                table: "users",
+                column: "identity_id",
                 unique: true);
         }
 
@@ -40,7 +48,7 @@ namespace DevHabit.Api.Migrations.Application
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "tags",
+                name: "users",
                 schema: "dev_habit");
         }
     }

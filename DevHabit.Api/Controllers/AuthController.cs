@@ -49,12 +49,10 @@ public sealed class AuthController(
                     createUserResult.Errors.ToDictionary(e => e.Code, e => e.Description)
                 }
             };
-
             return Problem(
                 "Unable to register user, please try again",
                 statusCode: StatusCodes.Status400BadRequest,
-                extensions: extensions
-            );
+                extensions: extensions);
         }
 
         IdentityResult addToRoleResult = await userManager.AddToRoleAsync(identityUser, Roles.Member);

@@ -38,3 +38,11 @@ await app.RunAsync();
 // Add-Migration Add_Identity -Context ApplicationIdentityDbContext -o Migrations/Identity
 // dotnet ef migrations add Add_HabitTags --output-dir Migrations/Application
 // dotnet ef migrations add Add_Identity --context ApplicationIdentityDbContext --output-dir Migrations/Identity
+
+// RABC - Role Based Access Control
+// [Authorize("users:read")]
+// ABAC - Attribute Based Access Control, Casbin
+// https://github.com/casbin/casbin
+// Examples ! 
+// RBAC: "All managers can view financial reports"
+// ABAC: "Users can view financial reports if they are in the finance department, during business hours, and from company IP addresses
