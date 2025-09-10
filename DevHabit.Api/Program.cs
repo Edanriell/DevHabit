@@ -1,5 +1,6 @@
 using DevHabit.Api;
 using DevHabit.Api.Extensions;
+using DevHabit.Api.Middleware;
 using DevHabit.Api.Settings;
 
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
@@ -30,6 +31,10 @@ app.UseHttpsRedirection();
 app.UseExceptionHandler();
 
 app.UseCors(CorsOptions.PolicyName);
+
+// app.UseResponseCaching();
+// app.UseOutputCache();
+app.UseMiddleware<ETagMiddleware>();
 
 app.UseAuthentication();
 app.UseAuthorization();
