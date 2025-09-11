@@ -202,6 +202,7 @@ public sealed class EntriesController(
     }
 
     [HttpPost]
+    //[IdempotentRequest]
     public async Task<ActionResult<EntryDto>> CreateEntry(
         CreateEntryDto createEntryDto,
         [FromHeader] AcceptHeaderDto acceptHeader,
@@ -222,7 +223,7 @@ public sealed class EntriesController(
         {
             return Problem(
                 $"Habit with ID '{createEntryDto.HabitId}' does not exist.",
-                statusCode: StatusCodes.Status400BadRequest);
+                statusCode: StatusCodes.Status404NotFound);
         }
 
         Entry entry = createEntryDto.ToEntity(userId, habit);
