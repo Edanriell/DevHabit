@@ -13,7 +13,8 @@ builder
     .AddApplicationServices()
     .AddAuthenticationServices()
     .AddBackgroundJobs()
-    .AddCorsPolicy();
+    .AddCorsPolicy()
+    .AddRateLimiting();
 
 WebApplication app = builder.Build();
 
@@ -38,6 +39,8 @@ app.UseMiddleware<ETagMiddleware>();
 
 app.UseAuthentication();
 app.UseAuthorization();
+
+app.UseRateLimiter();
 
 app.MapControllers();
 

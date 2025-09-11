@@ -10,11 +10,13 @@ using DevHabit.Api.Services.Sorting;
 using FluentValidation;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.RateLimiting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 
 namespace DevHabit.Api.Controllers;
 
+[EnableRateLimiting("default")]
 [Authorize(Roles = Roles.Member)]
 [ApiController]
 [Route("entries")]
