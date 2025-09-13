@@ -1,4 +1,4 @@
-﻿using System.Dynamic;
+using System.Dynamic;
 using DevHabit.Api.DTOs.Common;
 using DevHabit.Api.Services;
 

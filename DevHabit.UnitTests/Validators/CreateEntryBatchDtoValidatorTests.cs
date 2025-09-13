@@ -1,4 +1,4 @@
-﻿using DevHabit.Api.DTOs.Entries;
+using DevHabit.Api.DTOs.Entries;
 using DevHabit.Api.Entities;
 using FluentValidation.TestHelper;
 

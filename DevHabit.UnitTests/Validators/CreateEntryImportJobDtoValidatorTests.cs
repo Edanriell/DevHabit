@@ -1,4 +1,4 @@
-﻿using DevHabit.Api.DTOs.EntryImports;
+using DevHabit.Api.DTOs.EntryImports;
 using FluentValidation.TestHelper;
 using Microsoft.AspNetCore.Http;
 using NSubstitute;

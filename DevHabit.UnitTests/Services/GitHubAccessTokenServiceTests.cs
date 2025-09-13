@@ -1,4 +1,4 @@
-﻿using System.Security.Cryptography;
+using System.Security.Cryptography;
 using DevHabit.Api.Database;
 using DevHabit.Api.DTOs.GitHub;
 using DevHabit.Api.Entities;
