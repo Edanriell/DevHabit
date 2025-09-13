@@ -8,6 +8,7 @@
 
     <ItemGroup>
         <PackageReference Include="Asp.Versioning.Mvc"/>
+        <PackageReference Include="CsvHelper"/>
         <PackageReference Include="EFCore.NamingConventions"/>
         <PackageReference Include="FluentValidation.DependencyInjectionExtensions"/>
         <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer"/>
@@ -15,10 +16,6 @@
         <PackageReference Include="Microsoft.AspNetCore.JsonPatch"/>
         <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson"/>
         <PackageReference Include="Microsoft.AspNetCore.OpenApi"/>
-        <PackageReference Include="Microsoft.EntityFrameworkCore.Design">
-            <PrivateAssets>all</PrivateAssets>
-            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-        </PackageReference>
         <PackageReference Include="Microsoft.EntityFrameworkCore.Tools">
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -36,6 +33,14 @@
         <PackageReference Include="Refit.HttpClientFactory"/>
         <PackageReference Include="Refit.Newtonsoft.Json"/>
         <PackageReference Include="System.Linq.Dynamic.Core"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <Content Include="Properties\launchSettings.json"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <None Remove="Properties\PublishProfiles\devhabit-api - Zip Deploy.pubxml"/>
     </ItemGroup>
 
 </Project>

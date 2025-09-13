@@ -1,5 +1,5 @@
 namespace DevHabit.Api.DTOs.Entries;
-
+ 
 public sealed record EntryStatsDto
 {
     public required List<DailyStatsDto> DailyStats { get; init; }

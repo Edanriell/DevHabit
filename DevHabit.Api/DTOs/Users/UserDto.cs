@@ -1,5 +1,5 @@
 ﻿using DevHabit.Api.DTOs.Common;
-
+ 
 namespace DevHabit.Api.DTOs.Users;
 
 public sealed record UserDto : ILinksResponse

@@ -263,6 +263,7 @@ public static class DependencyInjection
     {
         builder.Services.AddQuartz(q =>
         {
+            // GitHub automation scheduler
             q.AddJob<GitHubAutomationSchedulerJob>(opts => opts.WithIdentity("github-automation-scheduler"));
 
             q.AddTrigger(opts => opts
@@ -277,8 +278,15 @@ public static class DependencyInjection
                     s.WithIntervalInMinutes(settings.ScanIntervalMinutes)
                         .RepeatForever();
                 }));
-        });
 
+            // Entry import cleanup job - runs daily at 3 AM UTC
+            q.AddJob<CleanupEntryImportJobsJob>(opts => opts.WithIdentity("cleanup-entry-imports"));
+
+            q.AddTrigger(opts => opts
+                .ForJob("cleanup-entry-imports")
+                .WithIdentity("cleanup-entry-imports-trigger")
+                .WithCronSchedule("0 0 3 * * ?", x => x.InTimeZone(TimeZoneInfo.Utc)));
+        });
 
         builder.Services.AddQuartzHostedService(options => options.WaitForJobsToComplete = true);
 
@@ -321,7 +329,7 @@ public static class DependencyInjection
                         .CreateProblemDetails(
                             context.HttpContext,
                             StatusCodes.Status429TooManyRequests,
-                            "Too many requests",
+                            "Too Many Requests",
                             detail: $"Too many requests. Please try again after {retryAfter.TotalSeconds} seconds."
                         );
 

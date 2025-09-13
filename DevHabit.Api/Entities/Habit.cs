@@ -20,4 +20,9 @@ public sealed class Habit
 
     public List<HabitTag> HabitTags { get; set; }
     public List<Tag> Tags { get; set; }
+
+    public static string NewId()
+    {
+        return $"h_{Guid.CreateVersion7()}";
+    }
 }

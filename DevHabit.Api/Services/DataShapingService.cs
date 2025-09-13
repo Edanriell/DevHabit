@@ -98,3 +98,4 @@ public sealed class DataShapingService
         return fieldsSet.All(f => propertyInfos.Any(p => p.Name.Equals(f, StringComparison.OrdinalIgnoreCase)));
     }
 }
+ 

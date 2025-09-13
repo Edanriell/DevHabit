@@ -7,3 +7,4 @@ public sealed class CorsOptions
 
     public required string[] AllowedOrigins { get; init; }
 }
+ 

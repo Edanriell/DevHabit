@@ -7,3 +7,4 @@ public enum FrequencyType
     Weekly = 2,
     Monthly = 3
 }
+ 

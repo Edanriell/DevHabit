@@ -1,5 +1,5 @@
 namespace DevHabit.Api.DTOs.Entries;
-
+ 
 public sealed record CreateEntryDto
 {
     public required string HabitId { get; init; }

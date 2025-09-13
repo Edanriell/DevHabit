@@ -4,3 +4,4 @@ public sealed class SortMappingDefinition<TSource, TDestination> : ISortMappingD
 {
     public required SortMapping[] Mappings { get; init; }
 }
+ 

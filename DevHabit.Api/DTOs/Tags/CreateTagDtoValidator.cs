@@ -1,7 +1,7 @@
 ﻿using FluentValidation;
 
 namespace DevHabit.Api.DTOs.Tags;
-
+ 
 public sealed class CreateTagDtoValidator : AbstractValidator<CreateTagDto>
 {
     public CreateTagDtoValidator()

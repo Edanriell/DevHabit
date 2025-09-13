@@ -1,5 +1,5 @@
 using FluentValidation;
-
+ 
 namespace DevHabit.Api.DTOs.Entries;
 
 public sealed class CreateEntryBatchDtoValidator : AbstractValidator<CreateEntryBatchDto>

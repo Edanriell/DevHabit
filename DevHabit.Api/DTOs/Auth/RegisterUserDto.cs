@@ -1,5 +1,5 @@
 ﻿namespace DevHabit.Api.DTOs.Auth;
-
+ 
 public sealed record RegisterUserDto
 {
     public required string Email { get; init; }

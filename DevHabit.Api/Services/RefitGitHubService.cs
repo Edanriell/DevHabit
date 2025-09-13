@@ -37,8 +37,7 @@ public sealed class RefitGitHubService(IGitHubApi gitHubApi, ILogger<GitHubServi
             accessToken,
             page,
             perPage,
-            cancellationToken
-        );
+            cancellationToken);
 
         if (!response.IsSuccessStatusCode)
         {

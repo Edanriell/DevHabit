@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
-     
+
 namespace DevHabit.Api.Migrations.Application
 {
     /// <inheritdoc />

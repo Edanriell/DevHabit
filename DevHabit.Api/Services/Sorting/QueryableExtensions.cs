@@ -1,7 +1,7 @@
 ﻿using System.Linq.Dynamic.Core;
 
 namespace DevHabit.Api.Services.Sorting;
-   
+
 internal static class QueryableExtensions
 {
     public static IQueryable<T> ApplySort<T>(

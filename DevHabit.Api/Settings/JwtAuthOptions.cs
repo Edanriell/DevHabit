@@ -10,3 +10,4 @@ public sealed class JwtAuthOptions
     public int ExpirationInMinutes { get; init; }
     public int RefreshTokenExpirationDays { get; init; }
 }
+ 
