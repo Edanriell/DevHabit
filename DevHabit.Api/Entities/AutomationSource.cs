@@ -4,3 +4,4 @@ public enum AutomationSource
 {
     GitHub = 1
 }
+ 

@@ -1,5 +1,5 @@
 namespace DevHabit.Api.DTOs.Entries;
-
+ 
 public sealed record UpdateEntryDto
 {
     public required int Value { get; init; }

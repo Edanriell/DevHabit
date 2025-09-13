@@ -2,7 +2,7 @@ using DevHabit.Api.DTOs.Common;
 using DevHabit.Api.Entities;
 
 namespace DevHabit.Api.DTOs.Entries;
-
+ 
 public sealed record EntryDto : ILinksResponse
 {
     public required string Id { get; init; }

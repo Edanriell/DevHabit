@@ -11,3 +11,4 @@ public sealed class RefreshToken
 
     public IdentityUser User { get; set; }
 }
+ 

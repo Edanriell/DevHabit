@@ -6,3 +6,4 @@ public enum HabitType
     Binary = 1,
     Measurable = 2
 }
+ 

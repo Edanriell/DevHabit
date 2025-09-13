@@ -1,7 +1,7 @@
 ﻿using DevHabit.Api.Entities;
 
 namespace DevHabit.Api.DTOs.Habits;
-
+ 
 public sealed record CreateHabitDto
 {
     public required string Name { get; init; }

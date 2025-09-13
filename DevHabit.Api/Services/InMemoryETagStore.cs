@@ -3,7 +3,7 @@ using System.Security.Cryptography;
 using System.Text;
 using Newtonsoft.Json;
 
-namespace DevHabit.Api.Middleware;
+namespace DevHabit.Api.Services;
 
 public sealed class InMemoryETagStore
 {

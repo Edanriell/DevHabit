@@ -9,7 +9,7 @@ public sealed class TagConfiguration : IEntityTypeConfiguration<Tag>
     public void Configure(EntityTypeBuilder<Tag> builder)
     {
         builder.HasKey(t => t.Id);
-
+ 
         builder.Property(t => t.Id).HasMaxLength(500);
         builder.Property(t => t.UserId).HasMaxLength(500);
 

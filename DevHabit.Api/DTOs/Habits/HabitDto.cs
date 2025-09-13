@@ -2,7 +2,7 @@
 using DevHabit.Api.Entities;
 
 namespace DevHabit.Api.DTOs.Habits;
-
+ 
 public sealed record HabitDto : ILinksResponse
 {
     public required string Id { get; init; }

@@ -6,3 +6,4 @@ public sealed class TagsOptions
 
     public required int MaxAllowedTags { get; init; }
 }
+ 

@@ -9,7 +9,7 @@ public sealed class HabitConfiguration : IEntityTypeConfiguration<Habit>
     public void Configure(EntityTypeBuilder<Habit> builder)
     {
         builder.HasKey(h => h.Id);
-
+ 
         builder.Property(h => h.Id).HasMaxLength(500);
         builder.Property(h => h.UserId).HasMaxLength(500);
 

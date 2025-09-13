@@ -3,7 +3,6 @@ using DevHabit.Api.Database;
 using DevHabit.Api.DTOs.Common;
 using DevHabit.Api.DTOs.Tags;
 using DevHabit.Api.Entities;
-using DevHabit.Api.Middleware;
 using DevHabit.Api.Services;
 using DevHabit.Api.Settings;
 using FluentValidation;

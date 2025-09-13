@@ -6,3 +6,4 @@ public enum HabitStatus
     Ongoing = 1,
     Completed = 2
 }
+ 

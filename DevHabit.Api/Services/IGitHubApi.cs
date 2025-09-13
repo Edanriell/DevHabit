@@ -8,13 +8,13 @@ public interface IGitHubApi
 {
     [Get("/user")]
     Task<ApiResponse<GitHubUserProfileDto>> GetUserProfile(
-        [Authorize()] string accessToken,
+        [Authorize("Bearer")] string accessToken,
         CancellationToken cancellationToken = default);
 
-    [Get("/users/{username}/{events}")]
+    [Get("/users/{username}/events")]
     Task<ApiResponse<List<GitHubEventDto>>> GetUserEvents(
         string username,
-        [Authorize()] string accessToken,
+        [Authorize("Bearer")] string accessToken,
         int page = 1,
         [AliasAs("per_page")] int perPage = 100,
         CancellationToken cancellationToken = default);

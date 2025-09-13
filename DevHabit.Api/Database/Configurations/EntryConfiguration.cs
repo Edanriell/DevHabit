@@ -9,7 +9,7 @@ public sealed class EntryConfiguration : IEntityTypeConfiguration<Entry>
     public void Configure(EntityTypeBuilder<Entry> builder)
     {
         builder.HasKey(e => e.Id);
-
+ 
         builder.Property(e => e.Id).HasMaxLength(500);
         builder.Property(e => e.HabitId).HasMaxLength(500);
         builder.Property(e => e.UserId).HasMaxLength(500);

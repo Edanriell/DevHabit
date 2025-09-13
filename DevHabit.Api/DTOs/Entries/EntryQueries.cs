@@ -2,7 +2,7 @@ using System.Linq.Expressions;
 using DevHabit.Api.Entities;
 
 namespace DevHabit.Api.DTOs.Entries;
-
+ 
 public static class EntryQueries
 {
     public static Expression<Func<Entry, EntryDto>> ProjectToDto()

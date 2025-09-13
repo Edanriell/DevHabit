@@ -9,7 +9,7 @@ internal sealed class GitHubAccessTokenConfiguration : IEntityTypeConfiguration<
     public void Configure(EntityTypeBuilder<GitHubAccessToken> builder)
     {
         builder.HasKey(gh => gh.Id);
-
+ 
         builder.Property(gh => gh.Id).HasMaxLength(500);
         builder.Property(gh => gh.UserId).HasMaxLength(500);
         builder.Property(gh => gh.Token).HasMaxLength(1000);

@@ -6,3 +6,4 @@ public sealed class GitHubAutomationOptions
 
     public required int ScanIntervalMinutes { get; init; }
 }
+ 
