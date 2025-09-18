@@ -18,6 +18,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevHabit.UnitTests", "DevHa
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevHabit.FunctionalTests", "DevHabit.FunctionalTests\DevHabit.FunctionalTests.csproj", "{19EAA814-DA63-448C-B5E7-0B13DCD6E835}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevHabit.IntegrationTests", "DevHabit.IntegrationTests\DevHabit.IntegrationTests.csproj", "{268B8A91-0CCD-41A5-B5E6-3F73BDB25F0C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -36,10 +38,15 @@ Global
 		{19EAA814-DA63-448C-B5E7-0B13DCD6E835}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{19EAA814-DA63-448C-B5E7-0B13DCD6E835}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{19EAA814-DA63-448C-B5E7-0B13DCD6E835}.Release|Any CPU.Build.0 = Release|Any CPU
+		{268B8A91-0CCD-41A5-B5E6-3F73BDB25F0C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{268B8A91-0CCD-41A5-B5E6-3F73BDB25F0C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{268B8A91-0CCD-41A5-B5E6-3F73BDB25F0C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{268B8A91-0CCD-41A5-B5E6-3F73BDB25F0C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{B9CD22F6-479F-43A6-B60D-52DDEE291A8C} = {F1F5653E-3CA7-44A3-8B92-C38F456A69AF}
 		{73DFA021-E1E0-4058-B291-A7EF9FF46DB6} = {716EB396-0A2B-4EA7-96AB-F6C0CA3FC1A5}
 		{19EAA814-DA63-448C-B5E7-0B13DCD6E835} = {716EB396-0A2B-4EA7-96AB-F6C0CA3FC1A5}
+		{268B8A91-0CCD-41A5-B5E6-3F73BDB25F0C} = {716EB396-0A2B-4EA7-96AB-F6C0CA3FC1A5}
 	EndGlobalSection
 EndGlobal
