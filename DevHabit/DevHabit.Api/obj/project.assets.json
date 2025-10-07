@@ -53,6 +53,22 @@
           }
         }
       },
+      "Asp.Versioning.Mvc.ApiExplorer/8.1.0": {
+        "type": "package",
+        "dependencies": {
+          "Asp.Versioning.Mvc": "8.1.0"
+        },
+        "compile": {
+          "lib/net8.0/Asp.Versioning.Mvc.ApiExplorer.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net8.0/Asp.Versioning.Mvc.ApiExplorer.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "CsvHelper/33.1.0": {
         "type": "package",
         "compile": {
@@ -2237,6 +2253,22 @@
         "icon.png",
         "lib/net8.0/Asp.Versioning.Mvc.dll",
         "lib/net8.0/Asp.Versioning.Mvc.xml"
+      ]
+    },
+    "Asp.Versioning.Mvc.ApiExplorer/8.1.0": {
+      "sha512": "a90gW/4TF/14Bjiwg9LqNtdKGC4G3gu02+uynq3bCISfQm48km5chny4Yg5J4hixQPJUwwJJ9Do1G+jM8L9h3g==",
+      "type": "package",
+      "path": "asp.versioning.mvc.apiexplorer/8.1.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE.txt",
+        "README.md",
+        "asp.versioning.mvc.apiexplorer.8.1.0.nupkg.sha512",
+        "asp.versioning.mvc.apiexplorer.nuspec",
+        "icon.png",
+        "lib/net8.0/Asp.Versioning.Mvc.ApiExplorer.dll",
+        "lib/net8.0/Asp.Versioning.Mvc.ApiExplorer.xml"
       ]
     },
     "CsvHelper/33.1.0": {
@@ -6090,6 +6122,7 @@
   "projectFileDependencyGroups": {
     "net9.0": [
       "Asp.Versioning.Mvc >= 8.1.0",
+      "Asp.Versioning.Mvc.ApiExplorer >= 8.1.0",
       "CsvHelper >= 33.1.0",
       "EFCore.NamingConventions >= 9.0.0",
       "FluentValidation.DependencyInjectionExtensions >= 12.0.0",
@@ -6170,6 +6203,11 @@
         "targetAlias": "net9.0",
         "dependencies": {
           "Asp.Versioning.Mvc": {
+            "target": "Package",
+            "version": "[8.1.0, )",
+            "versionCentrallyManaged": true
+          },
+          "Asp.Versioning.Mvc.ApiExplorer": {
             "target": "Package",
             "version": "[8.1.0, )",
             "versionCentrallyManaged": true

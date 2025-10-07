@@ -1,12 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "nr0TI387os0=",
+  "dgSpecHash": "/j8nDY8t1/w=",
   "success": true,
   "projectFilePath": "C:\\Users\\Lauris\\Desktop\\Rest\\DevHabit\\DevHabit\\DevHabit.Api\\DevHabit.Api.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Lauris\\.nuget\\packages\\asp.versioning.abstractions\\8.1.0\\asp.versioning.abstractions.8.1.0.nupkg.sha512",
     "C:\\Users\\Lauris\\.nuget\\packages\\asp.versioning.http\\8.1.0\\asp.versioning.http.8.1.0.nupkg.sha512",
     "C:\\Users\\Lauris\\.nuget\\packages\\asp.versioning.mvc\\8.1.0\\asp.versioning.mvc.8.1.0.nupkg.sha512",
+    "C:\\Users\\Lauris\\.nuget\\packages\\asp.versioning.mvc.apiexplorer\\8.1.0\\asp.versioning.mvc.apiexplorer.8.1.0.nupkg.sha512",
     "C:\\Users\\Lauris\\.nuget\\packages\\csvhelper\\33.1.0\\csvhelper.33.1.0.nupkg.sha512",
     "C:\\Users\\Lauris\\.nuget\\packages\\efcore.namingconventions\\9.0.0\\efcore.namingconventions.9.0.0.nupkg.sha512",
     "C:\\Users\\Lauris\\.nuget\\packages\\fluentvalidation\\12.0.0\\fluentvalidation.12.0.0.nupkg.sha512",
