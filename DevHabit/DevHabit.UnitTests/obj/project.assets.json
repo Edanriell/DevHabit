@@ -1742,6 +1742,22 @@
           }
         }
       },
+      "Scalar.AspNetCore/2.8.10": {
+        "type": "package",
+        "compile": {
+          "lib/net9.0/Scalar.AspNetCore.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net9.0/Scalar.AspNetCore.dll": {
+            "related": ".xml"
+          }
+        },
+        "frameworkReferences": [
+          "Microsoft.AspNetCore.App"
+        ]
+      },
       "SonarAnalyzer.CSharp/10.15.0.120848": {
         "type": "package"
       },
@@ -2063,6 +2079,7 @@
           "Quartz.Extensions.Hosting": "3.15.0",
           "Refit.HttpClientFactory": "8.0.0",
           "Refit.Newtonsoft.Json": "8.0.0",
+          "Scalar.AspNetCore": "2.8.10",
           "Swashbuckle.AspNetCore": "9.0.6",
           "System.Linq.Dynamic.Core": "1.6.8"
         },
@@ -4696,6 +4713,25 @@
         "refit.newtonsoft.json.8.0.0.nupkg.sha512",
         "refit.newtonsoft.json.nuspec",
         "refit_logo.png"
+      ]
+    },
+    "Scalar.AspNetCore/2.8.10": {
+      "sha512": "/7dX5P9C+mVrc2xS/b7YB89w+kZPp/jn/m8T3Iv5163Vu3awZPHmkwJ1/VRGn5in66+gkGMWcL7j9NbLnTrcrA==",
+      "type": "package",
+      "path": "scalar.aspnetcore/2.8.10",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "README.md",
+        "icon.png",
+        "lib/net10.0/Scalar.AspNetCore.dll",
+        "lib/net10.0/Scalar.AspNetCore.xml",
+        "lib/net8.0/Scalar.AspNetCore.dll",
+        "lib/net8.0/Scalar.AspNetCore.xml",
+        "lib/net9.0/Scalar.AspNetCore.dll",
+        "lib/net9.0/Scalar.AspNetCore.xml",
+        "scalar.aspnetcore.2.8.10.nupkg.sha512",
+        "scalar.aspnetcore.nuspec"
       ]
     },
     "SonarAnalyzer.CSharp/10.15.0.120848": {

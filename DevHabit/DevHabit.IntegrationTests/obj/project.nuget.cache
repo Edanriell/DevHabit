@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "UZkP35uDFpc=",
+  "dgSpecHash": "Xg8EmV1Q68c=",
   "success": true,
   "projectFilePath": "C:\\Users\\Lauris\\Desktop\\Rest\\DevHabit\\DevHabit\\DevHabit.IntegrationTests\\DevHabit.IntegrationTests.csproj",
   "expectedPackageFiles": [
@@ -210,6 +210,7 @@
     "C:\\Users\\Lauris\\.nuget\\packages\\runtime.ubuntu.14.04-x64.runtime.native.system.security.cryptography.openssl\\4.3.2\\runtime.ubuntu.14.04-x64.runtime.native.system.security.cryptography.openssl.4.3.2.nupkg.sha512",
     "C:\\Users\\Lauris\\.nuget\\packages\\runtime.ubuntu.16.04-x64.runtime.native.system.security.cryptography.openssl\\4.3.2\\runtime.ubuntu.16.04-x64.runtime.native.system.security.cryptography.openssl.4.3.2.nupkg.sha512",
     "C:\\Users\\Lauris\\.nuget\\packages\\runtime.ubuntu.16.10-x64.runtime.native.system.security.cryptography.openssl\\4.3.2\\runtime.ubuntu.16.10-x64.runtime.native.system.security.cryptography.openssl.4.3.2.nupkg.sha512",
+    "C:\\Users\\Lauris\\.nuget\\packages\\scalar.aspnetcore\\2.8.10\\scalar.aspnetcore.2.8.10.nupkg.sha512",
     "C:\\Users\\Lauris\\.nuget\\packages\\scriban.signed\\5.5.0\\scriban.signed.5.5.0.nupkg.sha512",
     "C:\\Users\\Lauris\\.nuget\\packages\\sharpyaml\\2.1.1\\sharpyaml.2.1.1.nupkg.sha512",
     "C:\\Users\\Lauris\\.nuget\\packages\\sharpziplib\\1.4.2\\sharpziplib.1.4.2.nupkg.sha512",
