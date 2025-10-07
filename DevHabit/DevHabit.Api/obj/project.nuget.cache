@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "/j8nDY8t1/w=",
+  "dgSpecHash": "33JUvZRVPjU=",
   "success": true,
   "projectFilePath": "C:\\Users\\Lauris\\Desktop\\Rest\\DevHabit\\DevHabit\\DevHabit.Api\\DevHabit.Api.csproj",
   "expectedPackageFiles": [
@@ -99,6 +99,7 @@
     "C:\\Users\\Lauris\\.nuget\\packages\\refit\\8.0.0\\refit.8.0.0.nupkg.sha512",
     "C:\\Users\\Lauris\\.nuget\\packages\\refit.httpclientfactory\\8.0.0\\refit.httpclientfactory.8.0.0.nupkg.sha512",
     "C:\\Users\\Lauris\\.nuget\\packages\\refit.newtonsoft.json\\8.0.0\\refit.newtonsoft.json.8.0.0.nupkg.sha512",
+    "C:\\Users\\Lauris\\.nuget\\packages\\scalar.aspnetcore\\2.8.10\\scalar.aspnetcore.2.8.10.nupkg.sha512",
     "C:\\Users\\Lauris\\.nuget\\packages\\sonaranalyzer.csharp\\10.15.0.120848\\sonaranalyzer.csharp.10.15.0.120848.nupkg.sha512",
     "C:\\Users\\Lauris\\.nuget\\packages\\swashbuckle.aspnetcore\\9.0.6\\swashbuckle.aspnetcore.9.0.6.nupkg.sha512",
     "C:\\Users\\Lauris\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\9.0.6\\swashbuckle.aspnetcore.swagger.9.0.6.nupkg.sha512",

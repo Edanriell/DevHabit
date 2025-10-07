@@ -3443,6 +3443,22 @@
           }
         }
       },
+      "Scalar.AspNetCore/2.8.10": {
+        "type": "package",
+        "compile": {
+          "lib/net9.0/Scalar.AspNetCore.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net9.0/Scalar.AspNetCore.dll": {
+            "related": ".xml"
+          }
+        },
+        "frameworkReferences": [
+          "Microsoft.AspNetCore.App"
+        ]
+      },
       "Scriban.Signed/5.5.0": {
         "type": "package",
         "compile": {
@@ -5198,6 +5214,7 @@
           "Quartz.Extensions.Hosting": "3.15.0",
           "Refit.HttpClientFactory": "8.0.0",
           "Refit.Newtonsoft.Json": "8.0.0",
+          "Scalar.AspNetCore": "2.8.10",
           "Swashbuckle.AspNetCore": "9.0.6",
           "System.Linq.Dynamic.Core": "1.6.8"
         },
@@ -10551,6 +10568,25 @@
         "runtime.ubuntu.16.10-x64.runtime.native.system.security.cryptography.openssl.4.3.2.nupkg.sha512",
         "runtime.ubuntu.16.10-x64.runtime.native.system.security.cryptography.openssl.nuspec",
         "runtimes/ubuntu.16.10-x64/native/System.Security.Cryptography.Native.OpenSsl.so"
+      ]
+    },
+    "Scalar.AspNetCore/2.8.10": {
+      "sha512": "/7dX5P9C+mVrc2xS/b7YB89w+kZPp/jn/m8T3Iv5163Vu3awZPHmkwJ1/VRGn5in66+gkGMWcL7j9NbLnTrcrA==",
+      "type": "package",
+      "path": "scalar.aspnetcore/2.8.10",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "README.md",
+        "icon.png",
+        "lib/net10.0/Scalar.AspNetCore.dll",
+        "lib/net10.0/Scalar.AspNetCore.xml",
+        "lib/net8.0/Scalar.AspNetCore.dll",
+        "lib/net8.0/Scalar.AspNetCore.xml",
+        "lib/net9.0/Scalar.AspNetCore.dll",
+        "lib/net9.0/Scalar.AspNetCore.xml",
+        "scalar.aspnetcore.2.8.10.nupkg.sha512",
+        "scalar.aspnetcore.nuspec"
       ]
     },
     "Scriban.Signed/5.5.0": {
