@@ -41,7 +41,7 @@ public sealed class HabitsController(
     /// <param name="dataShapingService">Service for data shaping</param>
     /// <returns>Paginated list of habits</returns>
     [HttpGet]
-    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType<PaginationResult<HabitDto>>(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public async Task<IActionResult> GetHabits(
         [FromQuery] HabitsQueryParameters query,
@@ -77,7 +77,7 @@ public sealed class HabitsController(
             .Where(h => h.UserId == userId)
             .Where(h => query.Search == null ||
                 h.Name.ToLower().Contains(query.Search) ||
-                (h.Description != null && h.Description.ToLower().Contains(query.Search)))
+                h.Description != null && h.Description.ToLower().Contains(query.Search))
             .Where(h => query.Type == null || h.Type == query.Type)
             .Where(h => query.Status == null || h.Status == query.Status)
             .ApplySort(query.Sort, sortMappings)
@@ -119,7 +119,8 @@ public sealed class HabitsController(
     /// <param name="dataShapingService">Service for data shaping</param>
     /// <returns>The requested habit</returns>
     [HttpGet("{id}")]
-    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType<HabitDto>(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     [MapToApiVersion(1.0)]
     public async Task<IActionResult> GetHabit(
@@ -171,7 +172,8 @@ public sealed class HabitsController(
     /// <returns>The requested habit</returns>
     [HttpGet("{id}")]
     [ApiVersion(2.0)]
-    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType<HabitWithTagsDtoV2>(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<IActionResult> GetHabitV2(
         string id,

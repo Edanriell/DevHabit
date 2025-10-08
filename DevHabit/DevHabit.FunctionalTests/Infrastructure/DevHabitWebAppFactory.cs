@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.Extensions.Logging.Abstractions;
+using Quartz.Logging;
 using Testcontainers.PostgreSql;
 using WireMock.Server;
 
@@ -18,16 +19,6 @@ public sealed class DevHabitWebAppFactory : WebApplicationFactory<Program>, IAsy
 
     private WireMockServer _wireMockServer;
 
-    public WireMockServer GetWireMockServer() => _wireMockServer;
-
-    protected override void ConfigureWebHost(IWebHostBuilder builder)
-    {
-        builder.UseSetting("ConnectionStrings:Database", _postgresContainer.GetConnectionString());
-        builder.UseSetting("GitHub:BaseUrl", _wireMockServer.Urls[0]);
-        builder.UseSetting("Encryption:Key", Convert.ToBase64String(RandomNumberGenerator.GetBytes(32)));
-        Quartz.Logging.LogContext.SetCurrentLogProvider(NullLoggerFactory.Instance);
-    }
-
     public async Task InitializeAsync()
     {
         await _postgresContainer.StartAsync();
@@ -38,5 +29,18 @@ public sealed class DevHabitWebAppFactory : WebApplicationFactory<Program>, IAsy
     {
         await _postgresContainer.StopAsync();
         _wireMockServer.Stop();
+    }
+
+    public WireMockServer GetWireMockServer()
+    {
+        return _wireMockServer;
+    }
+
+    protected override void ConfigureWebHost(IWebHostBuilder builder)
+    {
+        builder.UseSetting("ConnectionStrings:Database", _postgresContainer.GetConnectionString());
+        builder.UseSetting("GitHub:BaseUrl", _wireMockServer.Urls[0]);
+        builder.UseSetting("Encryption:Key", Convert.ToBase64String(RandomNumberGenerator.GetBytes(32)));
+        LogContext.SetCurrentLogProvider(NullLoggerFactory.Instance);
     }
 }

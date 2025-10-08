@@ -1,4 +1,5 @@
 using System.Net;
+using System.Net.Http.Headers;
 using System.Net.Http.Json;
 using DevHabit.Api.DTOs.Auth;
 using DevHabit.Api.DTOs.Common;
@@ -40,7 +41,7 @@ public sealed class HabitEntryFlowTests(DevHabitWebAppFactory factory) : Functio
         Assert.Equal(HttpStatusCode.OK, loginResponse.StatusCode);
         AccessTokensDto? tokens = await loginResponse.Content.ReadFromJsonAsync<AccessTokensDto>();
         Assert.NotNull(tokens);
-        client.DefaultRequestHeaders.Authorization = new("Bearer", tokens.AccessToken);
+        client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", tokens.AccessToken);
 
         // Step 3: Create a habit
         CreateHabitDto habitDto = TestData.Habits.CreateReadingHabit();
@@ -52,8 +53,8 @@ public sealed class HabitEntryFlowTests(DevHabitWebAppFactory factory) : Functio
         // Step 4: Create first entry
         CreateEntryDto firstEntryDto = TestData.Entries.CreateEntry(
             createdHabit.Id,
-            value: 25,
-            note: "First reading session");
+            25,
+            "First reading session");
         HttpResponseMessage firstEntryResponse = await client.PostAsJsonAsync(Routes.Entries.Create, firstEntryDto);
         Assert.Equal(HttpStatusCode.Created, firstEntryResponse.StatusCode);
         EntryDto? firstEntry = await firstEntryResponse.Content.ReadFromJsonAsync<EntryDto>();
@@ -64,8 +65,8 @@ public sealed class HabitEntryFlowTests(DevHabitWebAppFactory factory) : Functio
         CreateEntryDto secondEntryDto = TestData.Entries.CreateEntryForDate(
             createdHabit.Id,
             DateOnly.FromDateTime(DateTime.UtcNow.AddDays(-1)),
-            value: 35,
-            note: "Second reading session"
+            35,
+            "Second reading session"
         );
         HttpResponseMessage secondEntryResponse = await client.PostAsJsonAsync(Routes.Entries.Create, secondEntryDto);
         Assert.Equal(HttpStatusCode.Created, secondEntryResponse.StatusCode);

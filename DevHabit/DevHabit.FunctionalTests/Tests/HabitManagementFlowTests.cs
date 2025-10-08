@@ -1,4 +1,5 @@
 using System.Net;
+using System.Net.Http.Headers;
 using System.Net.Http.Json;
 using DevHabit.Api.DTOs.Auth;
 using DevHabit.Api.DTOs.Habits;
@@ -40,7 +41,7 @@ public sealed class HabitManagementFlowTests(DevHabitWebAppFactory factory) : Fu
         Assert.Equal(HttpStatusCode.OK, loginResponse.StatusCode);
         AccessTokensDto? tokens = await loginResponse.Content.ReadFromJsonAsync<AccessTokensDto>();
         Assert.NotNull(tokens);
-        client.DefaultRequestHeaders.Authorization = new("Bearer", tokens.AccessToken);
+        client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", tokens.AccessToken);
 
         // Step 3: Create a habit
         CreateHabitDto habitDto = TestData.Habits.CreateReadingHabit();
@@ -61,7 +62,7 @@ public sealed class HabitManagementFlowTests(DevHabitWebAppFactory factory) : Fu
         // Step 5: Tag the habit
         UpsertHabitTagsDto upsertTagsDto = TestData.HabitTags.CreateUpsertDto(createdTag.Id);
         HttpResponseMessage tagHabitResponse = await client.PutAsJsonAsync(
-            Routes.HabitTags.UpsertTags(createdHabit.Id), 
+            Routes.HabitTags.UpsertTags(createdHabit.Id),
             upsertTagsDto);
         Assert.Equal(HttpStatusCode.NoContent, tagHabitResponse.StatusCode);
 

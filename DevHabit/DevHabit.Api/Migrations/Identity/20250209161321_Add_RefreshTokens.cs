@@ -3,9 +3,9 @@ using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
- 
+
 namespace DevHabit.Api.Migrations.Identity
-{
+{    
     /// <inheritdoc />
     public partial class Add_RefreshTokens : Migration
     {
