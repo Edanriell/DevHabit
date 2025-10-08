@@ -4,9 +4,9 @@ using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
- 
+
 namespace DevHabit.Api.Migrations.Application
-{
+{      
     /// <inheritdoc />
     public partial class Add_EntryImportJobs : Migration
     {

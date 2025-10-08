@@ -8,9 +8,9 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
- 
+
 namespace DevHabit.Api.Migrations.Application
-{
+{     
     [DbContext(typeof(ApplicationDbContext))]
     [Migration("20250204114710_Add_HabitTags")]
     partial class Add_HabitTags

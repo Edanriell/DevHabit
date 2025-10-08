@@ -9,9 +9,9 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
- 
+
 namespace DevHabit.Api.Migrations.Application
-{
+{    
     [DbContext(typeof(ApplicationDbContext))]
     [Migration("20250213135133_Add_EntryImportJobs")]
     partial class Add_EntryImportJobs

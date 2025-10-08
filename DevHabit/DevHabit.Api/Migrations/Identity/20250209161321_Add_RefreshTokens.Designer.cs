@@ -6,11 +6,11 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
- 
+
 #nullable disable
 
 namespace DevHabit.Api.Migrations.Identity
-{
+{     
     [DbContext(typeof(ApplicationIdentityDbContext))]
     [Migration("20250209161321_Add_RefreshTokens")]
     partial class Add_RefreshTokens

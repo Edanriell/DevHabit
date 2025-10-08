@@ -1,4 +1,5 @@
 using System.Net;
+using System.Net.Http.Headers;
 using System.Net.Http.Json;
 using System.Text;
 using DevHabit.Api.DTOs.Auth;
@@ -43,7 +44,7 @@ public sealed class EntryImportFlowTests(DevHabitWebAppFactory factory) : Functi
         Assert.Equal(HttpStatusCode.OK, loginResponse.StatusCode);
         AccessTokensDto? tokens = await loginResponse.Content.ReadFromJsonAsync<AccessTokensDto>();
         Assert.NotNull(tokens);
-        client.DefaultRequestHeaders.Authorization = new("Bearer", tokens.AccessToken);
+        client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", tokens.AccessToken);
 
         // Step 3: Create a habit
         CreateHabitDto habitDto = TestData.Habits.CreateReadingHabit();
@@ -54,16 +55,16 @@ public sealed class EntryImportFlowTests(DevHabitWebAppFactory factory) : Functi
 
         // Step 4: Create CSV content for import
         string csvContent = $"""
-            habit_id,date,value,notes
-            {createdHabit.Id},2024-01-01,30,First day of reading
-            {createdHabit.Id},2024-01-02,25,Second day of reading
-            {createdHabit.Id},2024-01-03,35,Third day of reading
-            """;
+                             habit_id,date,value,notes
+                             {createdHabit.Id},2024-01-01,30,First day of reading
+                             {createdHabit.Id},2024-01-02,25,Second day of reading
+                             {createdHabit.Id},2024-01-03,35,Third day of reading
+                             """;
 
         // Step 5: Create and submit import job
         using var content = new MultipartFormDataContent();
         using var fileContent = new ByteArrayContent(Encoding.UTF8.GetBytes(csvContent));
-        fileContent.Headers.ContentType = new("text/csv");
+        fileContent.Headers.ContentType = new MediaTypeHeaderValue("text/csv");
         content.Add(fileContent, "file", "entries.csv");
 
         HttpResponseMessage importResponse = await client.PostAsync(Routes.EntryImports.Create, content);
@@ -75,17 +76,17 @@ public sealed class EntryImportFlowTests(DevHabitWebAppFactory factory) : Functi
         const int maxAttempts = 10;
         const int delayMs = 500;
         EntryImportJobDto? completedJob = null;
-        
+
         for (int attempt = 0; attempt < maxAttempts; attempt++)
         {
             await Task.Delay(delayMs);
-            
+
             HttpResponseMessage jobStatusResponse = await client.GetAsync(Routes.EntryImports.GetById(importJob.Id));
             Assert.Equal(HttpStatusCode.OK, jobStatusResponse.StatusCode);
-            
+
             completedJob = await jobStatusResponse.Content.ReadFromJsonAsync<EntryImportJobDto>();
             Assert.NotNull(completedJob);
-            
+
             if (completedJob.Status is EntryImportStatus.Completed or EntryImportStatus.Failed)
             {
                 break;

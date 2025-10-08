@@ -8,9 +8,9 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
- 
+
 namespace DevHabit.Api.Migrations.Application
-{
+{     
     [DbContext(typeof(ApplicationDbContext))]
     [Migration("20250209173754_Add_UserId_Reference")]
     partial class Add_UserId_Reference

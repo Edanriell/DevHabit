@@ -17,7 +17,10 @@ public abstract class FunctionalTestFixture(DevHabitWebAppFactory factory) : ICl
 
     public WireMockServer WireMockServer => factory.GetWireMockServer();
 
-    public HttpClient CreateClient() => factory.CreateClient();
+    public HttpClient CreateClient()
+    {
+        return factory.CreateClient();
+    }
 
     protected async Task CleanupDatabaseAsync()
     {

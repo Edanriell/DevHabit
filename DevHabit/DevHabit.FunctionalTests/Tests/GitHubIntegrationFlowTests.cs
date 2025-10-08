@@ -1,4 +1,5 @@
 using System.Net;
+using System.Net.Http.Headers;
 using System.Net.Http.Json;
 using System.Net.Mime;
 using DevHabit.Api.DTOs.Auth;
@@ -14,13 +15,13 @@ public sealed class GitHubIntegrationFlowTests(DevHabitWebAppFactory factory) : 
     private const string TestAccessToken = "gho_test123456789";
 
     private static readonly GitHubUserProfileDto TestUser = new(
-        Login: "testuser",
-        Name: "Test User",
-        AvatarUrl: "https://github.com/testuser.png",
-        Bio: "Test bio",
-        PublicRepos: 10,
-        Followers: 20,
-        Following: 30
+        "testuser",
+        "Test User",
+        "https://github.com/testuser.png",
+        "Test bio",
+        10,
+        20,
+        30
     );
 
     [Fact]
@@ -53,7 +54,7 @@ public sealed class GitHubIntegrationFlowTests(DevHabitWebAppFactory factory) : 
         Assert.Equal(HttpStatusCode.OK, loginResponse.StatusCode);
         AccessTokensDto? tokens = await loginResponse.Content.ReadFromJsonAsync<AccessTokensDto>();
         Assert.NotNull(tokens);
-        client.DefaultRequestHeaders.Authorization = new("Bearer", tokens.AccessToken);
+        client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", tokens.AccessToken);
 
         // Step 3: Mock GitHub API responses
         WireMockServer
